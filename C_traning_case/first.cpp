@@ -1,6 +1,7 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <Windows.h>
 #include "employee.h"
+#include <vector>
 
 using namespace std;
 
@@ -8,7 +9,7 @@ void Z1()
 {
 	employee arr[100];
 	int col;
-	cout << "Ââåäèòå êîëè÷åñòâî ";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ";
 	cin >> col;
 	if (col > 100)
 		col = 100;
@@ -24,7 +25,7 @@ void Z1()
 	}
 }
 
-int maxint(int *arr, int n)
+int maxint(vector<int> arr, int n)
 {
 	int max = arr[0];
 	for (int i = 0; i < n; i++)
@@ -39,59 +40,31 @@ int maxint(int *arr, int n)
 
 void Z2()
 {
-	int* arr = NULL;
-	int* arr_old = NULL;
-	int count = 0;
-	int new_el;
-	cout << "Ââåäèòå ÷èñëà (äëÿ îêîí÷àíèÿ ââîäà ââåäèòå E)" << endl;
+	vector<int> arr;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð° (Ð´Ð»Ñ Ð¾ÐºÐ¾Ð½Ñ‡Ð°Ð½Ð¸Ñ Ð²Ð²Ð¾Ð´Ð° Ð²Ð²ÐµÐ´Ð¸Ñ‚Ðµ e)" << endl;
 	do
 	{
 		string char_new_el;
 		cin >> char_new_el;
 		if (char_new_el == "e")
 			break;
-		new_el = stoi(char_new_el);
-		if (new_el == NULL)
-			break;
-		if (count > 0)
-		{
-			arr_old = new int[count];
-			for (int i = 0; i < count; i++)
-			{
-				arr_old[i] = arr[i];
-			}
-			delete[]arr;
-			arr = NULL;
-		}
-		count++;
-		arr = new int[count];
-		if (count > 0)
-		{
-			int i = 0;
-			for (; i < count - 1; i++)
-			{
-				arr[i] = arr_old[i];
-			}
-			arr[i] = new_el;
-			delete[] arr_old;
-			arr_old = NULL;
-		}
-		else
-			arr[0] = new_el;
+		int num;
+		num = stoi(char_new_el);
+		arr.push_back(num);
+		
 	} while (true);
-	for (int i = 0; i < count; i++)
+	for (int i = 0; i < arr.size(); i++)
 	{
 		cout << arr[i] << endl;
 	}
-	cout << "Ìàêñèìàëüíîå ÷èñëî: " << maxint(arr, count);
-	delete[] arr;
+	cout << "ÐœÐ°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: " << maxint(arr, arr.size());
 }
 
 int main()
 {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	cout << "Çàäàíèå: " << endl;
+	cout << "Ð—Ð°Ð´Ð°Ð½Ð¸Ðµ: " << endl;
 	int vib;
 	cin >> vib;
 	switch (vib)
@@ -109,5 +82,4 @@ int main()
 	default:
 		break;
 	}
-
 }
